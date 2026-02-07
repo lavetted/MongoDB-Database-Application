@@ -1,4 +1,4 @@
-const animeData = [
+export default [
   {
     title: "Demon Slayer",
     genre: ["Action", "Fantasy"],
@@ -180,5 +180,3 @@ const animeData = [
     studio: "8bit",
   },
 ];
-
-export default animeData;

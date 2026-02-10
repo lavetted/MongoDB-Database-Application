@@ -2,7 +2,9 @@
 
 A RESTful API built with Node.js, Express, and MongoDB that manages anime, characters, and reviews.
 This project demonstrates database modeling, relationships, CRUD operations, validation, and indexing.
-I used rowdy- logger to make sure I have all my paths connected and works.
+I used rowdy- logger to make sure I have all my paths are connected and works.
+
+![Anime Database](image/image%20(2).png)
 
 ## 🚀 Features
 

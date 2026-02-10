@@ -2,8 +2,8 @@
 @json = application/json
 
 # Paste real Mongo ObjectIds here after you create things:
-@animeId = 69882dfc0907ddbedc84448d
-@characterId = 69884a7bb2b0c276e273c8ad
+@animeId = REPLACE_ME
+@characterId = REPLACE_ME
 @reviewId = REPLACE_ME
 
 

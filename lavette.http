@@ -1,0 +1,148 @@
+@baseUrl = http://localhost:3000
+@json = application/json
+
+# Paste real Mongo ObjectIds here after you create things:
+@animeId = 69882dfc0907ddbedc84448d
+@characterId = 69884a7bb2b0c276e273c8ad
+@reviewId = REPLACE_ME
+
+
+############################################
+# ANIME
+############################################
+
+### Get all anime
+GET {{baseUrl}}/anime
+
+### Get anime by id
+GET {{baseUrl}}/anime/{{animeId}}
+
+### Create anime (matches Anime schema)
+POST {{baseUrl}}/anime
+Content-Type: {{json}}
+
+{
+  "title": "Jujutsu Kaisen",
+  "genre": ["Action", "Supernatural"],
+  "episodes": 47,
+  "status": "Ongoing",
+  "releaseYear": 2020,
+  "rating": 8.7,
+  "studio": "MAPPA"
+}
+
+### Update anime (PATCH)
+PATCH {{baseUrl}}/anime/{{animeId}}
+Content-Type: {{json}}
+
+{
+  "episodes": 48,
+  "rating": 8.8
+}
+
+### Delete anime
+DELETE {{baseUrl}}/anime/{{animeId}}
+
+
+############################################
+# CHARACTERS
+############################################
+
+### Get all characters
+GET {{baseUrl}}/characters
+
+### Get character by id
+GET {{baseUrl}}/characters/{{characterId}}
+
+### Create character (requires animeId)
+POST {{baseUrl}}/characters
+Content-Type: {{json}}
+
+{
+  "name": "Satoru Gojo",
+  "role": "Teacher",
+  "powerLevel": 9000,
+  "isMainCharacter": true,
+  "animeId": "{{animeId}}"
+}
+
+### Update character (PATCH)
+PATCH {{baseUrl}}/characters/{{characterId}}
+Content-Type: {{json}}
+
+{
+  "role": "Strongest Sorcerer",
+  "powerLevel": 9500,
+  "isMainCharacter": true
+}
+
+### Delete character
+DELETE {{baseUrl}}/characters/{{characterId}}
+
+
+############################################
+# REVIEWS
+############################################
+
+### Get all reviews
+GET {{baseUrl}}/reviews
+
+### Get review by id
+GET {{baseUrl}}/reviews/{{reviewId}}
+
+### Create review (requires animeId) - note: (animeId, username) must be unique
+POST {{baseUrl}}/reviews
+Content-Type: {{json}}
+
+{
+  "username": "lavette",
+  "rating": 9,
+  "comment": "Great pacing and fights. Season 2 was wild.",
+  "animeId": "{{animeId}}"
+}
+
+### Update review (PATCH)
+PATCH {{baseUrl}}/reviews/{{reviewId}}
+Content-Type: {{json}}
+
+{
+  "rating": 10,
+  "comment": "Update: rewatched it. Even better."
+}
+
+### Delete review
+DELETE {{baseUrl}}/reviews/{{reviewId}}
+
+
+############################################
+# QUICK VALIDATION TESTS (optional)
+############################################
+
+### Invalid anime (rating > 10) -> should fail validation
+POST {{baseUrl}}/anime
+Content-Type: {{json}}
+
+{
+  "title": "Bad Data",
+  "genre": ["Test"],
+  "rating": 11
+}
+
+### Invalid character (missing animeId) -> should fail validation
+POST {{baseUrl}}/characters
+Content-Type: {{json}}
+
+{
+  "name": "No Anime",
+  "powerLevel": 10
+}
+
+### Invalid review (rating 0) -> should fail validation
+POST {{baseUrl}}/reviews
+Content-Type: {{json}}
+
+{
+  "username": "ab",
+  "rating": 0,
+  "animeId": "{{animeId}}"
+}

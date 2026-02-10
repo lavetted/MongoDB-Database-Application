@@ -37,7 +37,7 @@ const reviewSchema = new mongoose.Schema(
 // 📈 Index for fast review lookups by anime
 reviewSchema.index({ animeId: 1 });
 
-// Optional: Prevent same user reviewing same anime multiple times
+// Prevent same user reviewing same anime multiple times
 reviewSchema.index({ animeId: 1, username: 1 }, { unique: true });
 
 export default mongoose.model("Review", reviewSchema);

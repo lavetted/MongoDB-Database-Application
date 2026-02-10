@@ -6,6 +6,8 @@ I used rowdy- logger to make sure I have all my paths are connected and works.
 
 ![Anime Database](image/image%20(2).png)
 
+I used Rest Client instead of Postman I have a file named lavette.http where you do the path by clicking the "send request" on it
+
 ## 🚀 Features
 
 - 3 MongoDB collections:

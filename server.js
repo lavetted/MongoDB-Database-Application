@@ -7,6 +7,7 @@ import animeRoutes from "./routes/animeRoutes.js";
 import characterRoutes from "./routes/characterRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import connectDB from "./db/conn.js";
+import * as rowdy from "rowdy-logger";
 
 // Setup
 dotenv.config();
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(logReq);
+const routesReport = rowdy.begin(app);
 
 // Routes
 app.use("/anime", animeRoutes);
@@ -37,4 +39,5 @@ const startServer = async () => {
   }
 };
 
+routesReport.print();
 startServer();
